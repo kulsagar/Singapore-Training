@@ -22,7 +22,7 @@ public class BankTest{
 		service = new BankServiceImpl(new AccountInMemoryRepo());
 	}
 	@Test
-	public void user_creates_account_with_valid_name_and_amount(){
+	public void userCreatesAccountWithValidNameAndAmount(){
 		
 		try {
 			assertEquals(300, service.createAccount(new Customer("Sagar Kulkarni"), 300).getBalance(),0);
@@ -32,13 +32,13 @@ public class BankTest{
 	}
 	
 	@Test(expected=InsufficientAmountException.class)
-	public void user_creates_account_with_insufficient_amount() throws InsufficientAmountException{
+	public void userCreatesAccountWithInsufficientAmount() throws InsufficientAmountException{
 		
 		service.createAccount(new Customer("Sagar Kulkarni") , 50);
 	}
 	
 	@Test
-	public void user_creates_account_with_invalid_name(){
+	public void userAreatesAccountWithInvalidName(){
 		
 		try {
 			assertEquals(null, service.createAccount(new Customer(null), 300));

@@ -1,6 +1,8 @@
 package com.bank.scb.utils;
 
 public class AccountNumberGenerator {
+	
+	private AccountNumberGenerator(){}
 
 	private static int accountCounter;
 	static{
