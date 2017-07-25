@@ -7,7 +7,7 @@ import com.bank.scb.exceptions.InvalidAccountException;
 
 public interface BankService {
 
-	String createAccount(Customer customer, double amount) throws InsufficientAmountException;
+	Account createAccount(Customer customer, double amount) throws InsufficientAmountException;
 	
 	Account showBalance(int id) throws InvalidAccountException;
 }

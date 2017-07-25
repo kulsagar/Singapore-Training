@@ -5,6 +5,7 @@ import com.bank.scb.beans.Customer;
 import com.bank.scb.exceptions.InsufficientAmountException;
 import com.bank.scb.exceptions.InvalidAccountException;
 import com.bank.scb.repo.AccountRepo;
+import com.bank.scb.utils.AccountNumberGenerator;
 
 public class BankServiceImpl implements BankService{
 
@@ -15,7 +16,20 @@ public class BankServiceImpl implements BankService{
 		this.repo = repo;
 	}
 
-	public String createAccount(Customer customer, double amount) throws InsufficientAmountException {
+	public Account createAccount(Customer customer, double amount) throws InsufficientAmountException {
+		if(customer.getName()==null){
+			return null;
+		}
+		if(amount<100){
+			throw new InsufficientAmountException();
+		}
+		int accountNumber = AccountNumberGenerator.generateAccountNumber();
+		Account account = new Account(accountNumber);
+		account.setCustomer(customer);
+		account.setBalance(amount);
+		if(repo.save(account)){
+			return account; 
+		}
 		return null;
 	}
 

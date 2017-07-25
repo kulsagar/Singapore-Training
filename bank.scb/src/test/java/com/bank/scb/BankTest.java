@@ -25,7 +25,7 @@ public class BankTest{
 	public void user_creates_account_with_valid_name_and_amount(){
 		
 		try {
-			assertEquals("Account Created Successfully", service.createAccount(new Customer("Sagar Kulkarni"), 300));
+			assertEquals(300, service.createAccount(new Customer("Sagar Kulkarni"), 300).getBalance(),0);
 		} catch (InsufficientAmountException e) {
 			e.printStackTrace();
 		}
@@ -37,11 +37,11 @@ public class BankTest{
 		service.createAccount(new Customer("Sagar Kulkarni") , 50);
 	}
 	
-	@Test(expected=InsufficientAmountException.class)
+	@Test
 	public void user_creates_account_with_invalid_name(){
 		
 		try {
-			assertEquals("Error in creating Account.", service.createAccount(new Customer(null), 300));
+			assertEquals(null, service.createAccount(new Customer(null), 300));
 		} catch (InsufficientAmountException e) {
 			e.printStackTrace();
 		}
